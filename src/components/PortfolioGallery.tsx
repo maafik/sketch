@@ -1,27 +1,26 @@
 import { useEffect, useState } from "react";
 import { Grid } from "lucide-react";
 
-// Подключаем картинки из public, чтобы отсутствие файла не ломало сборку
-// Положите файлы в public/assets с этими именами
-const img1 = "/src/assets/harry.jpg";
-const img2 = "/src/assets/snake-flowers.jpg";
-const img3 = "/src/assets/koi.jpg";
-const img4 = "/src/assets/wolf.jpg";
-const img5 = "/src/assets/owl.jpg";
-const img6 = "/src/assets/raven.jpg";
-const img7 = "/src/assets/wolf-dual.jpg";
+// Импортируем изображения из assets
+import harryImg from "@/assets/harry.jpg";
+import snakeImg from "@/assets/snake-flowers.jpg";
+import koiImg from "@/assets/koi.jpg";
+import wolfImg from "@/assets/wolf.jpg";
+import owlImg from "@/assets/owl.jpg";
+import ravenImg from "@/assets/raven.jpg";
+import wolfDualImg from "@/assets/wolf-dual.jpg";
 
 type GalleryItem = { id: number; image: string; style: string };
 
 // Только ваши работы + подпись со стилем под каждой
 const galleryItems: GalleryItem[] = [
-  { id: 1, image: img1, style: "Фэнтези / Цвет + графика" },
-  { id: 2, image: img2, style: "Змей и лилии / Лайн‑арт" },
-  { id: 3, image: img3, style: "Карп кои / Традишнл цвет" },
-  { id: 4, image: img4, style: "Волк / Black&Grey" },
-  { id: 5, image: img5, style: "Сова / Нео‑традишнл цвет" },
-  { id: 6, image: img6, style: "Ворон / Нордический Blackwork" },
-  { id: 7, image: img7, style: "Волк дуал / Black&Grey + графика" },
+  { id: 1, image: harryImg, style: "Фэнтези / Цвет + графика" },
+  { id: 2, image: snakeImg, style: "Змей и лилии / Лайн‑арт" },
+  { id: 3, image: koiImg, style: "Карп кои / Традишнл цвет" },
+  { id: 4, image: wolfImg, style: "Волк / Black&Grey" },
+  { id: 5, image: owlImg, style: "Сова / Нео‑традишнл цвет" },
+  { id: 6, image: ravenImg, style: "Ворон / Нордический Blackwork" },
+  { id: 7, image: wolfDualImg, style: "Волк дуал / Black&Grey + графика" },
 ];
 
 export const PortfolioGallery = () => {
