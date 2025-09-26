@@ -1,11 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { trackYandexGoal, YANDEX_GOALS } from "@/lib/yandex-metrika";
 
 export const HeroSection = () => {
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
+  
   const scrollToPortfolio = () => {
+    // Отправляем событие в Яндекс.Метрику
+    trackYandexGoal(YANDEX_GOALS.VIEW_PORTFOLIO);
     document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
   };
   return (

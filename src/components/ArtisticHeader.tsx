@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { trackYandexGoal, YANDEX_GOALS } from "@/lib/yandex-metrika";
 
 export const ArtisticHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,7 +35,11 @@ export const ArtisticHeader = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#portfolio" className="text-foreground hover:text-primary transition-colors font-medium">
+            <a 
+              href="#portfolio" 
+              className="text-foreground hover:text-primary transition-colors font-medium"
+              onClick={() => trackYandexGoal(YANDEX_GOALS.NAV_PORTFOLIO)}
+            >
               Портфолио
             </a>
             <a href="#about" className="text-foreground hover:text-primary transition-colors font-medium">
@@ -46,7 +51,10 @@ export const ArtisticHeader = () => {
             <Button 
               variant="default" 
               className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-6 py-2 rounded-lg ink-splatter"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => {
+                trackYandexGoal(YANDEX_GOALS.NAV_ORDER);
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               Заказать эскиз
             </Button>
@@ -70,7 +78,10 @@ export const ArtisticHeader = () => {
               <a 
                 href="#portfolio" 
                 className="text-foreground hover:text-primary transition-colors font-medium py-2"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => {
+                  trackYandexGoal(YANDEX_GOALS.MOBILE_NAV_PORTFOLIO);
+                  setIsMenuOpen(false);
+                }}
               >
                 Портфолио
               </a>
@@ -92,6 +103,7 @@ export const ArtisticHeader = () => {
                 variant="default" 
                 className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium w-full mt-4"
                 onClick={() => {
+                  trackYandexGoal(YANDEX_GOALS.MOBILE_NAV_ORDER);
                   setIsMenuOpen(false);
                   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                 }}
