@@ -41,9 +41,9 @@ const contactMethods = [
 ];
 
 const pricingInfo = [
-  { type: "Простой эскиз", price: "3000₽", time: "1-2 дня" },
-  { type: "Средняя сложность", price: "5000₽", time: "2-3 дня" },
-  { type: "Сложный эскиз", price: "8000₽", time: "3-5 дней" },
+  { type: "Простой эскиз", price: "3000\u00A0\u20BD", time: "1-2 дня" },
+  { type: "Средняя сложность", price: "5000\u00A0\u20BD", time: "2-3 дня" },
+  { type: "Сложный эскиз", price: "8000\u00A0\u20BD", time: "3-5 дней" },
 ];
 
 export const ContactSection = () => {
