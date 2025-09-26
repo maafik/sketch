@@ -20,7 +20,7 @@ const galleryItems: GalleryItem[] = [
   { id: 4, image: wolfImg, style: "Волк / Black&Grey" },
   { id: 5, image: owlImg, style: "Сова / Нео‑традишнл цвет" },
   { id: 6, image: ravenImg, style: "Ворон / Нордический Blackwork" },
-  { id: 7, image: wolfDualImg, style: "Волк дуал / Black&Grey + графика" },
+  { id: 7, image: wolfDualImg, style: "Воин с вороном" },
 ];
 
 export const PortfolioGallery = () => {
