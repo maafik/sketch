@@ -33,7 +33,7 @@ const Index = () => {
               <a href="https://t.me/IrisArts1" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                 Telegram
               </a>
-              <a href="https://wa.me/79517623467" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://api.whatsapp.com/send?phone=79517623467&text=Здравствуйте! Хочу заказать эскиз." target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                 WhatsApp
               </a>
             </div>

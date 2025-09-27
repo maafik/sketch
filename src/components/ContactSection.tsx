@@ -35,7 +35,7 @@ const contactMethods = [
     title: "WhatsApp",
     description: "Подробное обсуждение",
     action: "+7 951 762-34-67",
-    url: "https://api.whatsapp.com/send?phone=79517623467",
+    url: "https://api.whatsapp.com/send?phone=79517623467&text=Здравствуйте! Хочу заказать эскиз.",
     color: "text-green-500"
   },
 ];
@@ -84,14 +84,30 @@ export const ContactSection = () => {
     return `Заявка на эскиз\nИмя: ${data.name}\nТелефон: ${data.phone}\nСтиль: ${data.style || "—"}\nОписание: ${data.description || "—"}`;
   };
 
-  const openWhatsApp = () => {
-    const greeting = encodeURIComponent("Здравствуйте! Интересуюсь эскизом.");
+  // Функция для WhatsApp с данными из формы
+  const openWhatsAppWithForm = () => {
+    const data = lastSubmission ?? formData;
+    let message = "Здравствуйте! Интересуюсь эскизом.";
+    
+    // Если есть данные из формы, формируем детальное сообщение
+    if (data.name || data.phone || data.style || data.description) {
+      message = `Здравствуйте! Хочу заказать эскиз.\n\nИмя: ${data.name || "—"}\nТелефон: ${data.phone || "—"}\nСтиль: ${data.style || "—"}\nОписание: ${data.description || "—"}`;
+    }
+    
+    const encodedMessage = encodeURIComponent(message);
     // Отправляем детали в Telegram молча (без финального окна)
     sendToTelegram(false);
     // Используем api.whatsapp.com для более стабильного префилла, чем wa.me
-    window.open(`https://api.whatsapp.com/send?phone=79517623467&text=${greeting}`, "_blank");
+    window.open(`https://api.whatsapp.com/send?phone=79517623467&text=${encodedMessage}`, "_blank");
     // Финальный попап показываем только для Telegram
     setShowStepPopup("none");
+  };
+
+  // Функция для обычного WhatsApp (простое приветствие)
+  const openWhatsAppSimple = () => {
+    const message = "Здравствуйте! Хочу заказать эскиз.";
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://api.whatsapp.com/send?phone=79517623467&text=${encodedMessage}`, "_blank");
   };
 
   const sendToTelegram = async (showFinal: boolean = true) => {
@@ -321,9 +337,7 @@ export const ContactSection = () => {
             <h4 className="text-xl font-display font-semibold text-foreground">Как удобнее связаться?</h4>
             <p className="text-sm text-muted-foreground">Выберите мессенджер — мы подставим текст заявки автоматически</p>
             <div className="flex gap-3 justify-center pt-2">
-              <a href="https://wa.me/79517623467" target="_blank" rel="noreferrer" className="inline-flex">
-                <Button onClick={openWhatsApp} className="bg-green-500 hover:bg-green-600 text-white px-5">WhatsApp</Button>
-              </a>
+              <Button onClick={openWhatsAppWithForm} className="bg-green-500 hover:bg-green-600 text-white px-5">WhatsApp</Button>
               <Button onClick={sendToTelegram} className="bg-sky-500 hover:bg-sky-600 text-white px-5">Telegram</Button>
             </div>
           </div>
