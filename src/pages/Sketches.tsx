@@ -1,5 +1,8 @@
 import { ArtisticHeader } from "@/components/ArtisticHeader";
+import { HeroSection } from "@/components/HeroSection";
 import { PortfolioGallery } from "@/components/PortfolioGallery";
+import { AboutSection } from "@/components/AboutSection";
+import { ProcessSection } from "@/components/ProcessSection";
 import { ContactSection } from "@/components/ContactSection";
 
 const Sketches = () => {
@@ -7,7 +10,10 @@ const Sketches = () => {
     <div className="min-h-screen bg-background">
       <ArtisticHeader />
       <main>
+        <HeroSection />
         <PortfolioGallery />
+        <AboutSection />
+        <ProcessSection />
         <ContactSection />
       </main>
       <footer className="py-12 border-t border-border/50 bg-card/30 backdrop-blur-sm">
