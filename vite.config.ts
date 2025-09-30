@@ -19,5 +19,11 @@ export default defineConfig(({ mode }) => ({
   build: {
     outDir: "dist",
     assetsDir: "assets",
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, "index.html"),
+        sketches: path.resolve(__dirname, "sketches.html"),
+      },
+    },
   },
 }));
