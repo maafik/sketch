@@ -66,7 +66,7 @@ export const ContactSection = () => {
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 2000));
 
-    toast({ title: "Заявка отправлена! ✨", description: "Выберите способ связи" });
+    toast({ title: "Последний шаг! ✨", description: "Выберите способ связи" });
     setLastSubmission(formData);
     setShowStepPopup("choices");
     setIsSubmitting(false);
