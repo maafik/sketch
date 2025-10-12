@@ -63,12 +63,36 @@ export const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    toast({ title: "Заявка отправлена! ✨", description: "Выберите способ связи" });
-    setLastSubmission(formData);
-    setShowStepPopup("choices");
+    try {
+      // Сразу отправляем заявку в Telegram
+      await sendToTelegram(false);
+      
+      // Показываем успешное сообщение
+      toast({ 
+        title: "Заявка отправлена! ✨", 
+        description: "Я получила вашу заявку и скоро свяжусь с вами" 
+      });
+      
+      setLastSubmission(formData);
+      setShowStepPopup("final");
+      
+      // Очищаем форму
+      setFormData({
+        name: "",
+        phone: "",
+        style: "",
+        description: "",
+        attachment: null,
+      });
+      
+    } catch (error) {
+      toast({ 
+        title: "Ошибка отправки", 
+        description: "Попробуйте связаться со мной напрямую через мессенджеры" 
+      });
+      setShowStepPopup("choices");
+    }
+    
     setIsSubmitting(false);
   };
 
@@ -348,11 +372,11 @@ export const ContactSection = () => {
         <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60" onClick={() => setShowStepPopup("none")}> 
           <div className="bg-card p-6 rounded-2xl border border-border w-[90%] max-w-md space-y-4 text-center" onClick={(e) => e.stopPropagation()}>
             <button className="absolute top-4 right-4 text-muted-foreground hover:text-foreground" onClick={() => setShowStepPopup("none")}>✕</button>
-            <h4 className="text-xl font-display font-semibold text-foreground">Последний шаг</h4>
-            <p className="text-sm text-muted-foreground">Напишите мне в Telegram, чтобы мы быстрее связались ❤️</p>
+            <h4 className="text-xl font-display font-semibold text-foreground">Заявка получена! 🎉</h4>
+            <p className="text-sm text-muted-foreground">Я получила вашу заявку и скоро свяжусь с вами. Если хотите обсудить детали прямо сейчас — напишите мне в Telegram!</p>
             <div className="flex gap-3 justify-center pt-2">
               <a href="https://t.me/IrisArts1" target="_blank" rel="noreferrer" className="inline-flex">
-                <Button className="bg-sky-500 hover:bg-sky-600 text-white px-5">Написать</Button>
+                <Button className="bg-sky-500 hover:bg-sky-600 text-white px-5">Написать в Telegram</Button>
               </a>
             </div>
           </div>
